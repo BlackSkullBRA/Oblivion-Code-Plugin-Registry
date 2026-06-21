@@ -1,0 +1,9 @@
+{
+  "id": "git-copilot",
+  "name": "Oblivion Git Copilot",
+  "version": "1.4.0",
+  "desc": "Rich git graph visualization, merge conflict helper & auto commits.",
+  "author": "Oblivion Dev",
+  "downloadUrl": "https://github.com/BlackSkullBRA/Oblivion-Code-Plugin-Registry/archive/refs/heads/main.zip",
+  "permissions": ["terminal"]
+}

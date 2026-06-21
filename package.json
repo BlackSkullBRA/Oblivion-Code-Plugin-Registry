@@ -1,0 +1,11 @@
+{
+  "name": "oblivion-code-plugin-registry",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Repositório Central de Plugins do Oblivion Code IDE",
+  "private": true,
+  "scripts": {
+    "validate": "node validate-plugin.js",
+    "build": "node build-registry.js"
+  }
+}

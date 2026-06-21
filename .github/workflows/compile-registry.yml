@@ -1,0 +1,35 @@
+name: Compile and Publish Registry
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'plugins/**.json'
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Compile registry.json
+        run: node build-registry.js
+
+      - name: Commit and Push Changes
+        run: |
+          git config --global user.name "GitHub Actions Bot"
+          git config --global user.email "actions@github.com"
+          git add registry.json
+          git diff-index --quiet HEAD || git commit -m "chore: auto-compile registry.json [skip ci]"
+          git push origin main
