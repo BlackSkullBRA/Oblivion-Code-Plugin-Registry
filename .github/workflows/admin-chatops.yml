@@ -1,0 +1,23 @@
+name: Admin ChatOps
+
+on:
+  issue_comment:
+    types: [created]
+
+jobs:
+  chatops:
+    if: github.event.issue.pull_request && (startsWith(github.event.comment.body, '/approve') || startsWith(github.event.comment.body, '/deny') || startsWith(github.event.comment.body, '/reject'))
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Run ChatOps Handler
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node admin-chatops.js
